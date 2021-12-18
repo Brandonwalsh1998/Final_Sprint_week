@@ -1,0 +1,248 @@
+#QAP 5, Due December 10th
+#By: Brandon Walsh
+#December 3rd, 2:08pm
+
+ALLOW_CHAR = set("abcdefghijklmonpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'-1234567890 .")
+CELL_ALLOW_NUM = set("1234567890- ")
+EXTRA_LIAB = 130.00
+GLASS_COV = 86.00
+CAR_LOANER_OPT = 58.00
+DISCOUNT = 0.25
+HST = 0.15
+BASIC_PREM = 869.00
+POL_NUM = "1994"
+POLICY_FEE = 39.99
+
+#f = open("OSICDef.dat" , "r")
+#POL_NUM = int(f.readline())
+#BASIC_PREM = float(f.readline())
+#DISCOUNT = float(f.readline())
+#EXTRA_LIAB = float(f.readline())
+#GLASS_COV = float(f.readline())
+#CAR_LOANER_OPT = float(f.readline())
+#HST = float(f.readline())
+#f.close()
+
+
+while True:
+    CustFirstName = input("Please enter your first name!: ").title()
+
+    if CustFirstName == "":
+        print("Ooops! Thats an invalid first name - please enter a name thats not blank")
+
+    elif set(CustFirstName).issubset(ALLOW_CHAR) == False:
+        print("Oops! Thats an invalid first name - please enter name with proper characters")
+
+    else:
+        CustFirstName = CustFirstName
+        break
+
+
+while True:
+    CustLastName = input("Please enter your last name!: ")
+
+    if CustLastName == "":
+                print("Ooops! Thats an invalid last name - please enter a name thats not blank")
+
+    elif set(CustLastName).issubset(ALLOW_CHAR) == False:
+                print("Oops! Thats an invalid last name - please enter name with proper characters")
+
+    else:
+        CustLastName = CustLastName.title()
+        break
+
+while True:
+
+    CustAddress = input("Please enter enter your address!: ")
+
+    if CustAddress == "":
+            print("Oops! Thats an invalid address - please enter an address that isnt blank")
+
+    elif set(CustAddress).issubset(ALLOW_CHAR) == False:
+            print("Oops! Thats an invalid address - please enter an address with the correct characters")
+
+    else:
+        break
+
+while True:
+
+    CustCity = input("PLease enter your city!: ")
+
+    if CustCity == "":
+        print("Oops! Thats an invlaid city - please enter a city thats not blank")
+
+    elif set(CustCity).issubset(ALLOW_CHAR) == False:
+        print("Oops! Thats an invalid city - please enter a city with valid characters")
+
+    else:
+        CustCity = CustCity.title()
+        break
+
+while True:
+
+    CustProv = input("PLease enter your province of residents!: ")
+
+    if CustProv == "":
+        print("Oops! Thats an invalid provnice - please enter a province thats not blank")
+
+    elif set(CustProv).issubset(ALLOW_CHAR) == False:
+            print("Oops! Thats an invalid province - please enter a province with the correct characters")
+
+    else:
+        CustProv = CustProv.title()
+        break
+
+while True:
+
+    CustPostCode = input("Please enter your postal code!: ")
+
+
+    if CustPostCode == "":
+            print("Invalid postakl code - postal code cannot be blank")
+
+    else:
+        break
+
+while True:
+
+    CustPhoneNum = input("Please enter your phone number!:")
+
+    if CustPhoneNum == "":
+            print("Invalid phone number - phone number cannot be blank")
+
+    elif set(CustPhoneNum).issubset(CELL_ALLOW_NUM) == False:
+            print("Invalid phone number - please enter number containing only numerical values")
+
+    else:
+        break
+
+while True:
+    try:
+        NumCarsInsured = int(input("Please enter Number of cars you want to insure!: "))
+
+    except:
+        print('Invalid input entry - please enter only numerical values ')
+
+    if NumCarsInsured == 1:
+        InsPrem = BASIC_PREM
+        break
+
+    elif NumCarsInsured > 1:
+        InsPrem = BASIC_PREM + (((BASIC_PREM) * (EXTRA_LIAB - 1)) * DISCOUNT)
+        break
+
+
+while True:
+
+    ExtraLiability = input("If you would like the extra liability 'up to a $1,000,000' Please enter Y for yes or N for no!:").upper()
+
+    if ExtraLiability == "":
+        print("Invalid entry - entry cannot be blank")
+
+    elif ExtraLiability != "Y" and  ExtraLiability != "N":
+        print("Invalid entry - entry must be Y or N")
+
+    else:
+        break
+
+while True:
+
+    CustGlassCov = input("Please enter if you want option glass coverage! 'Y/N':").upper()
+
+    if CustGlassCov == "":
+        print("Invalid entry - entry cannot be blank!")
+
+    elif CustGlassCov != "Y" and CustGlassCov != "N":
+        print("Invalid entry - entry must be Y or N")
+    else:
+        break
+
+while True:
+
+    CustOptLoaner = input("Please enter if you want a optioal loaner car! 'Y/N':").upper()
+
+    if CustOptLoaner == "":
+        print("Invalid entry- entry cannot be blank")
+
+    elif CustOptLoaner != "Y" and CustOptLoaner != "N":
+        print("Invalid entry - entry must be Y or N")
+    else:
+        break
+
+while True:
+
+    CustPayType1 = input("Please enter if you would like to pay in full or monthly! 'F/M'").upper()
+
+    if CustPayType1 == "":
+        print("Invalid entry - entry cannot be blank")
+
+    elif CustPayType1 != "F" and CustPayType1 != "M":
+        print("Invalid entry - entry must be F or M")
+
+    else:
+        break
+
+    f = open("OSICDef.dat", "w")  # "a" adds to the end, "w" overwrites.
+    f.write("{}, ".format(str(POL_NUM)))
+    f.write("{}, ".format(str(BASIC_PREM)))
+    f.write("{}, ".format(str(DISCOUNT)))
+    f.write("{}, ".format(str(EXTRA_LIAB)))
+    f.write("{}, ".format(str(GLASS_COV)))
+    f.write("{}, ".format(str(CAR_LOANER_OPT)))
+    f.write("{}, ".format(str(HST)))
+    f.write("{}\n".format(str(POLICY_FEE)))
+    f.close()
+
+ExtraCharge1 = 0
+ExtraCharge2 = 0
+ExtraCharge3 = 0
+while True:
+    if ExtraLiability.upper == 'Y':
+        ExtraCharge1 = (EXTRA_LIAB * BASIC_PREM)
+        print(ExtraCharge1)
+
+    if CustGlassCov == 'Y':
+        ExtraCharge2 = (EXTRA_LIAB * GLASS_COV)
+        print(ExtraCharge2)
+
+    if CustOptLoaner == 'Y':
+        ExtraCharge3 = (EXTRA_LIAB * CAR_LOANER_OPT)
+        print(ExtraCharge3)
+        TotalExtraCharge = ExtraCharge1 + ExtraCharge2 + ExtraCharge3
+        print(TotalExtraCharge)
+        break
+
+
+print("0        1         2         3         4         0         0")
+print("123456789012345678901234567890123456789012345678901234567890")
+print("                      One Stop Insurance                    ")
+print("------------------------------------------------------------")
+print("   First name           Last name          Customers Address")
+print(f"   {CustFirstName}      {CustLastName}             {CustAddress}   ")
+print("------------------------------------------------------------")
+print("      City              Province            Postal Code     ")
+print(f"    {CustCity}        {CustProv}                       {CustPostCode}  ")
+print("------------------------------------------------------------")
+print(f"Extra Liability 'Y/N'                      {ExtraLiability}, {ExtraCharge1}")
+print(f"Customer Glass  'Y/N'                      {CustGlassCov}, {ExtraCharge2}")
+print(f"Optional Loaner Car 'Y/N'                  {CustOptLoaner}, {ExtraCharge3}")
+print(f"Customers Pay type 'M/F                    {CustPayType1}")
+print(f"Total Customer Charge                      {TotalExtraCharge}")
+print("------------------------------------------------------------")
+print("             Thank you for using One Stop Insurance!        ")
+
+f = open("Policies.dat", "a")
+f.write("{}, ".format(str(POL_NUM)))
+POL_NUM = 1 + int(POL_NUM)
+f.write("{}, ".format(str(CustFirstName)))
+f.write("{}, ".format(str(CustLastName)))
+f.write("{}, ".format(str(CustAddress)))
+f.write("{}, ".format(str(CustCity)))
+f.write("{}, ".format(str(CustProv)))
+f.write("{}, ".format(str(CustPhoneNum)))
+f.write("{}, ".format(str(NumCarsInsured)))
+f.write("{}, ".format(str(ExtraLiability)))
+f.write("{}, ".format(str(CustGlassCov)))
+f.write("{}, ".format(str(CustOptLoaner)))
+f.write("{}, ".format(str(CustPayType1)))
+f.write("{}\n".format(TotalExtraCharge))
